@@ -24,6 +24,7 @@
       <th>Check-out time</th>
       <th>Even</th>
       <th>Odd</th>
+      <th>Rating</th>
     </tr>
 
     <tr
@@ -39,6 +40,7 @@
       <td>{{ room.checkOutTime | date }}</td>
       <td>{{ e }}</td>
       <td>{{ o }}</td>
+      <td>{{ room.rating | number: "1.1" }}</td>
     </tr>
   </table>
 </div>

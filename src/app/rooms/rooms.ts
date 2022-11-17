@@ -10,6 +10,7 @@ export interface Room {
   amenities: string;
   price: number;
   photo: string;
+  rating: number;
 
   checkInTime: Date;
   checkOutTime: Date;
