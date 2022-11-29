@@ -20,6 +20,8 @@ export class RoomsComponent implements OnInit {
 
   hideRooms = false;
 
+  selectedRoom?: Room;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -55,6 +57,10 @@ export class RoomsComponent implements OnInit {
         checkOutTime: new Date("11/13/2022"),
       },
     ];
+  }
+
+  selectRoom(room: Room): void {
+    this.selectedRoom = room;
   }
 
   toggle() {
