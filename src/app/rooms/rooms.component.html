@@ -12,6 +12,10 @@
 
 <div *ngIf="selectedRoom">Selected room: {{ selectedRoom | json }}</div>
 
+<div>
+  <button (click)="addRoom()">Add Room</button>
+</div>
+
 <div *ngIf="rooms.availableRooms > 0">
   <hia-rooms-table
     [rooms]="roomList"

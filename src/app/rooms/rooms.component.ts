@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { Room, Rooms } from "./rooms";
 
 @Component({
   selector: "hia-rooms",
   templateUrl: "./rooms.component.html",
   styleUrls: ["./rooms.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsComponent implements OnInit {
   hotelName = "Neo Hotel";
@@ -57,6 +58,22 @@ export class RoomsComponent implements OnInit {
         checkOutTime: new Date("11/13/2022"),
       },
     ];
+  }
+
+  addRoom(): void {
+    const room: Room = {
+      amenities: "My Amenities",
+      checkInTime: new Date(),
+      checkOutTime: new Date(),
+      photo: "No photo",
+      price: 50,
+      rating: 5,
+      roomNumber: 6,
+      roomType: "Simple room room",
+    };
+
+    // this.roomList.push(room);
+    this.roomList = [...this.roomList, room];
   }
 
   selectRoom(room: Room): void {
