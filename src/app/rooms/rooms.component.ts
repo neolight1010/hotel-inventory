@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { HeaderComponent } from "../header/header.component";
 import { Room, Rooms } from "./rooms";
 
 @Component({
@@ -7,7 +15,7 @@ import { Room, Rooms } from "./rooms";
   styleUrls: ["./rooms.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   hotelName = "Neo Hotel";
   numberOfRooms = 10;
 
@@ -22,6 +30,9 @@ export class RoomsComponent implements OnInit {
   hideRooms = false;
 
   selectedRoom?: Room;
+
+  @ViewChild(HeaderComponent)
+  headerComponent!: HeaderComponent;
 
   constructor() {}
 
@@ -58,6 +69,12 @@ export class RoomsComponent implements OnInit {
         checkOutTime: new Date("11/13/2022"),
       },
     ];
+  }
+
+  ngAfterViewInit(): void {}
+
+  ngAfterViewChecked(): void {
+    this.headerComponent.title = "Rooms View";
   }
 
   addRoom(): void {
