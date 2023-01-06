@@ -7,6 +7,8 @@ import { RoomsComponent } from "./rooms/rooms.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RoomsTableComponent } from "./rooms/rooms-table/rooms-table.component";
 import { HeaderComponent } from "./header/header.component";
+import { ContainerComponent } from "./container/container.component";
+import { EmployeeComponent } from "./employee/employee.component";
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { HeaderComponent } from "./header/header.component";
     RoomsComponent,
     RoomsTableComponent,
     HeaderComponent,
+    ContainerComponent,
+    EmployeeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
