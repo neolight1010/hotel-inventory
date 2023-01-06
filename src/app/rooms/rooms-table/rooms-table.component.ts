@@ -3,6 +3,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -14,7 +15,7 @@ import { Room } from "../rooms";
   templateUrl: "./rooms-table.component.html",
   styleUrls: ["./rooms-table.component.scss"],
 })
-export class RoomsTableComponent implements OnInit, OnChanges {
+export class RoomsTableComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   rooms: Room[] = [];
 
@@ -26,7 +27,11 @@ export class RoomsTableComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    console.log("Changing: ", changes);
+  }
+
+  ngOnDestroy(): void {
+    console.log("Destroying!");
   }
 
   selectRoom(room: Room): void {
