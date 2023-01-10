@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Room } from "../rooms";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -38,7 +39,9 @@ export class RoomsService {
     },
   ];
 
-  constructor() {}
+  constructor() {
+    console.log("API URL: ", environment.apiUrl);
+  }
 
   get rooms(): Room[] {
     return this.roomList;
