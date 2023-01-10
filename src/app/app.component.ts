@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Optional } from "@angular/core";
+import { LoggerService } from "./logger.service";
 
 @Component({
   selector: "hia-root",
@@ -7,4 +8,8 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "hotelinventoryapp";
+
+  constructor(@Optional() private loggerService?: LoggerService) {
+    this.loggerService?.log("Hello World");
+  }
 }
