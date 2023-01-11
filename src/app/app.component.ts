@@ -1,4 +1,5 @@
-import { Component, Optional } from "@angular/core";
+import { Component, Inject, OnInit, Optional } from "@angular/core";
+import { LocalStorageToken } from "../local-storage.token";
 import { LoggerService } from "./logger.service";
 
 @Component({
@@ -6,10 +7,17 @@ import { LoggerService } from "./logger.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "hotelinventoryapp";
 
-  constructor(@Optional() private loggerService?: LoggerService) {
+  constructor(
+    @Inject(LocalStorageToken) private localStorage: Storage,
+    @Optional() private loggerService?: LoggerService
+  ) {
     this.loggerService?.log("Hello World");
+  }
+
+  ngOnInit(): void {
+    this.localStorage.setItem("hotelName", "Hilton Hotel");
   }
 }
