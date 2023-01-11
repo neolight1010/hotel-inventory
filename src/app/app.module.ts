@@ -9,6 +9,7 @@ import { RoomsTableComponent } from "./rooms/rooms-table/rooms-table.component";
 import { HeaderComponent } from "./header/header.component";
 import { ContainerComponent } from "./container/container.component";
 import { EmployeeComponent } from "./employee/employee.component";
+import { APP_CONFIG, AppConfigService } from "./app-config/app-config.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,12 @@ import { EmployeeComponent } from "./employee/employee.component";
     EmployeeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
-  providers: [],
+  providers: [
+    {
+      provide: AppConfigService,
+      useValue: APP_CONFIG,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
