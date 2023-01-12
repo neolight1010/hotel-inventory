@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -20,7 +21,12 @@ import { APP_CONFIG, AppConfigService } from "./app-config/app-config.service";
     ContainerComponent,
     EmployeeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+  ],
   providers: [
     {
       provide: AppConfigService,
