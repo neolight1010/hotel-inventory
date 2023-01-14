@@ -7,6 +7,7 @@ import {
   SkipSelf,
   ViewChild,
 } from "@angular/core";
+import { Observable } from "rxjs";
 import { HeaderComponent } from "../header/header.component";
 import { Room, Rooms } from "./rooms";
 import { RoomsService } from "./services/rooms.service";
@@ -33,6 +34,13 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   selectedRoom?: Room;
 
+  stream = new Observable<string>((observer) => {
+    observer.next("user1");
+    observer.next("user2");
+    observer.next("user3");
+    observer.complete();
+  });
+
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
 
@@ -41,6 +49,11 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   ngOnInit(): void {
     this.roomsService.rooms.subscribe((rooms) => {
       this.roomList = rooms;
+    });
+
+    this.stream.subscribe({
+      next: (data) => console.log(data),
+      complete: () => console.log("complete"),
     });
   }
 
