@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  SkipSelf,
   ViewChild,
 } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
@@ -35,10 +36,12 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
 
-  constructor(private roomsService: RoomsService) {}
+  constructor(@SkipSelf() private roomsService: RoomsService) {}
 
   ngOnInit(): void {
-    this.roomList = this.roomsService.rooms;
+    this.roomsService.rooms.subscribe((rooms) => {
+      this.roomList = rooms;
+    });
   }
 
   ngAfterViewInit(): void {}
@@ -55,7 +58,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
       photo: "No photo",
       price: 50,
       rating: 5,
-      roomNumber: 6,
+      roomNumber: "6",
       roomType: "Simple room room",
     };
 
