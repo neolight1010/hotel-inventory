@@ -47,7 +47,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
   constructor(@SkipSelf() private roomsService: RoomsService) {}
 
   ngOnInit(): void {
-    this.roomsService.rooms.subscribe((rooms) => {
+    this.roomsService.getRooms().subscribe((rooms) => {
       this.roomList = rooms;
     });
 
@@ -78,6 +78,38 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
     this.roomsService.addRoom(room).subscribe((allRooms) => {
       this.roomList = allRooms;
     });
+  }
+
+  updateRoom(): void {
+    this.roomsService
+      .updateRoom({
+        roomNumber: this.roomList[this.roomList.length - 1].roomNumber,
+        roomType: "Updated room type",
+        amenities: "Updated amenities",
+        checkInTime: new Date(),
+        checkOutTime: new Date(),
+        photo: "Updated photo",
+        price: 100,
+        rating: 5,
+      })
+      .subscribe((allRooms) => {
+        this.roomList = allRooms;
+      });
+
+    // const updatedRooms$ = this.roomsService.updateRoom("1", {
+    //   roomNumber: "1",
+    //   roomType: "Updated room type",
+    //   amenities: "Updated amenities",
+    //   checkInTime: new Date(),
+    //   checkOutTime: new Date(),
+    //   photo: "Updated photo",
+    //   price: 100,
+    //   rating: 5,
+    // });
+
+    // updatedRooms$.subscribe((rooms) => {
+    //   this.roomList = rooms;
+    // });
   }
 
   selectRoom(room: Room): void {

@@ -9,14 +9,18 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class RoomsService {
+  // private rooms: Room[] = [];
+
   constructor(
     @Inject(AppConfigService) private appConfig: AppConfig,
     private http: HttpClient
   ) {
     console.log("API URL: ", this.appConfig.apiUrl);
+
+    // this.getRooms().subscribe((rooms) => (this.rooms = rooms));
   }
 
-  get rooms(): Observable<Room[]> {
+  getRooms(): Observable<Room[]> {
     return this.http.get<Room[]>("/api/rooms");
   }
 
@@ -25,5 +29,22 @@ export class RoomsService {
    */
   addRoom(room: Room): Observable<Room[]> {
     return this.http.post<Room[]>("/api/rooms", room);
+  }
+
+  updateRoom(roomData: Room): Observable<Room[]> {
+    return this.http.put<Room[]>(`/api/rooms/${roomData.roomNumber}`, roomData);
+
+    // const updatedRooms = this.rooms.map((room) => {
+    //   if (room.roomNumber === roomNumber) {
+    //     return roomData;
+    //   }
+
+    //   return room;
+    // });
+
+    // return new Observable((observer) => {
+    //   observer.next(updatedRooms);
+    //   observer.complete();
+    // });
   }
 }

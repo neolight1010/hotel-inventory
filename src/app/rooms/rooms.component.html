@@ -16,6 +16,10 @@
   <button (click)="addRoom()">Add Room</button>
 </div>
 
+<div>
+  <button (click)="updateRoom()">Update Room</button>
+</div>
+
 <div *ngIf="!hideRooms">
   <hia-rooms-table
     [rooms]="roomList"
