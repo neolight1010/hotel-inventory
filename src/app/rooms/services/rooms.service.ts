@@ -19,4 +19,11 @@ export class RoomsService {
   get rooms(): Observable<Room[]> {
     return this.http.get<Room[]>("/api/rooms");
   }
+
+  /**
+   * Add a new rooms and returns the updated list of rooms.
+   */
+  addRoom(room: Room): Observable<Room[]> {
+    return this.http.post<Room[]>("/api/rooms", room);
+  }
 }

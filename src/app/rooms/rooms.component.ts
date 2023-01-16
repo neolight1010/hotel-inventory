@@ -75,8 +75,9 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
       roomType: "Simple room room",
     };
 
-    // this.roomList.push(room);
-    this.roomList = [...this.roomList, room];
+    this.roomsService.addRoom(room).subscribe((allRooms) => {
+      this.roomList = allRooms;
+    });
   }
 
   selectRoom(room: Room): void {
