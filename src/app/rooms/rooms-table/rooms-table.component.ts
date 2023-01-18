@@ -24,10 +24,13 @@ export class RoomsTableComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("RoomsTableComponent: ", this.rooms);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("Changing: ", changes);
+    console.log("CHANGES: ", changes);
+    this.rooms = changes["rooms"].currentValue;
   }
 
   ngOnDestroy(): void {

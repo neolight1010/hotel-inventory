@@ -95,25 +95,16 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
       .subscribe((allRooms) => {
         this.roomList = allRooms;
       });
-
-    // const updatedRooms$ = this.roomsService.updateRoom("1", {
-    //   roomNumber: "1",
-    //   roomType: "Updated room type",
-    //   amenities: "Updated amenities",
-    //   checkInTime: new Date(),
-    //   checkOutTime: new Date(),
-    //   photo: "Updated photo",
-    //   price: 100,
-    //   rating: 5,
-    // });
-
-    // updatedRooms$.subscribe((rooms) => {
-    //   this.roomList = rooms;
-    // });
   }
 
   selectRoom(room: Room): void {
     this.selectedRoom = room;
+  }
+
+  deleteRoom() {
+    this.roomsService
+      .deleteRoom(this.roomList[0].roomNumber)
+      .subscribe((rooms) => (this.roomList = rooms));
   }
 
   toggle() {

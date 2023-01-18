@@ -33,18 +33,9 @@ export class RoomsService {
 
   updateRoom(roomData: Room): Observable<Room[]> {
     return this.http.put<Room[]>(`/api/rooms/${roomData.roomNumber}`, roomData);
+  }
 
-    // const updatedRooms = this.rooms.map((room) => {
-    //   if (room.roomNumber === roomNumber) {
-    //     return roomData;
-    //   }
-
-    //   return room;
-    // });
-
-    // return new Observable((observer) => {
-    //   observer.next(updatedRooms);
-    //   observer.complete();
-    // });
+  deleteRoom(roomNumber: string): Observable<Room[]> {
+    return this.http.delete<Room[]>(`/api/rooms/${roomNumber}`);
   }
 }
