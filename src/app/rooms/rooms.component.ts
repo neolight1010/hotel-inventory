@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  DoCheck,
   OnInit,
   SkipSelf,
   ViewChild,
@@ -18,7 +19,10 @@ import { RoomsService } from "./services/rooms.service";
   styleUrls: ["./rooms.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class RoomsComponent
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
+{
+  // 8: 28: 47
   hotelName = "Neo Hotel";
   numberOfRooms = 10;
 
@@ -61,6 +65,10 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.headerComponent.title = "Rooms View";
+  }
+
+  ngDoCheck(): void {
+    console.log("Some change has happened!");
   }
 
   addRoom(): void {
