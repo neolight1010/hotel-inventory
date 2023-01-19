@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@angular/core";
 import { Room } from "../rooms";
 import { AppConfigService } from "../../app-config/app-config.service";
 import { AppConfig } from "../../app-config/app-config.interface";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -38,4 +38,24 @@ export class RoomsService {
   deleteRoom(roomNumber: string): Observable<Room[]> {
     return this.http.delete<Room[]>(`/api/rooms/${roomNumber}`);
   }
+
+  getPhotos(): Observable<HttpEvent<Photo>> {
+    const request = new HttpRequest(
+      "GET",
+      "http://jsonplaceholder.typicode.com/photos",
+      {
+        reportProgress: true,
+      }
+    );
+
+    return this.http.request(request);
+  }
+}
+
+interface Photo {
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
 }

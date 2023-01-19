@@ -1,7 +1,7 @@
+import { HttpEventType } from "@angular/common/http";
 import {
   AfterViewChecked,
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   DoCheck,
   OnInit,
@@ -17,7 +17,6 @@ import { RoomsService } from "./services/rooms.service";
   selector: "hia-rooms",
   templateUrl: "./rooms.component.html",
   styleUrls: ["./rooms.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsComponent
   implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
@@ -34,7 +33,7 @@ export class RoomsComponent
 
   roomList: Room[] = [];
 
-  hideRooms = false;
+  hideRooms = true;
 
   selectedRoom?: Room;
 
@@ -44,6 +43,8 @@ export class RoomsComponent
     observer.next("user3");
     observer.complete();
   });
+
+  photoBytesDownloaded: number = 0;
 
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
@@ -55,9 +56,27 @@ export class RoomsComponent
       this.roomList = rooms;
     });
 
-    this.stream.subscribe({
-      next: (data) => console.log(data),
-      complete: () => console.log("complete"),
+    this.roomsService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log("Request has been made!");
+          break;
+
+        case HttpEventType.ResponseHeader:
+          console.log("Response header has been received!");
+          break;
+
+        case HttpEventType.DownloadProgress:
+          this.photoBytesDownloaded += event.loaded;
+
+          console.log(
+            `Download in progress! ${this.photoBytesDownloaded} total bytes downloaded.`
+          );
+          break;
+
+        case HttpEventType.Response:
+          console.log("Photo successfully obtained!", event.body);
+      }
     });
   }
 
