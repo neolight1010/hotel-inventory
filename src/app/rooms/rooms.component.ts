@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import { Observable } from "rxjs";
 import { HeaderComponent } from "../header/header.component";
-import { Room, Rooms } from "./rooms";
+import { Room } from "./rooms";
 import { RoomsService } from "./services/rooms.service";
 
 @Component({
@@ -25,11 +25,7 @@ export class RoomsComponent
   hotelName = "Neo Hotel";
   numberOfRooms = 10;
 
-  rooms: Rooms = {
-    totalRooms: 20,
-    availableRooms: 10,
-    bookedRooms: 5,
-  };
+  rooms$: Observable<Room[]> = this.roomsService.getRooms$;
 
   roomList: Room[] = [];
 

@@ -1,15 +1,5 @@
 <hia-header></hia-header>
 
-<div [hidden]="hideRooms">
-  Number of rooms:
-  <div
-    [ngStyle]="{ color: rooms.availableRooms > 0 ? 'steelblue' : 'red' }"
-    [innerText]="numberOfRooms"
-  ></div>
-</div>
-
-{{ rooms.availableRooms }}
-
 <div *ngIf="selectedRoom">Selected room: {{ selectedRoom | json }}</div>
 
 <div>
@@ -25,10 +15,12 @@
 </div>
 
 <div *ngIf="!hideRooms">
-  <hia-rooms-table
-    [rooms]="roomList"
-    (roomSelected)="selectRoom($event)"
-  ></hia-rooms-table>
+  <div *ngIf="rooms$ | async as rooms">
+    <hia-rooms-table
+      [rooms]="rooms"
+      (roomSelected)="selectRoom($event)"
+    ></hia-rooms-table>
+  </div>
 </div>
 
 <button (click)="toggle()">Toggle</button>
