@@ -52,7 +52,7 @@ export class RoomsComponent
   constructor(@SkipSelf() private roomsService: RoomsService) {}
 
   ngOnInit(): void {
-    this.roomsService.getRooms().subscribe((rooms) => {
+    this.roomsService.getRooms$.subscribe((rooms) => {
       this.roomList = rooms;
     });
 

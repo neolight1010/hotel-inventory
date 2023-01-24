@@ -3,7 +3,7 @@ import { Room } from "../rooms";
 import { AppConfigService } from "../../app-config/app-config.service";
 import { AppConfig } from "../../app-config/app-config.interface";
 import { HttpClient, HttpEvent, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, shareReplay } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -19,6 +19,8 @@ export class RoomsService {
 
     // this.getRooms().subscribe((rooms) => (this.rooms = rooms));
   }
+
+  getRooms$ = this.http.get<Room[]>("/api/rooms").pipe(shareReplay(1));
 
   getRooms(): Observable<Room[]> {
     return this.http.get<Room[]>("/api/rooms");
