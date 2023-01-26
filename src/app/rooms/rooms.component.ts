@@ -8,7 +8,7 @@ import {
   SkipSelf,
   ViewChild,
 } from "@angular/core";
-import { Observable } from "rxjs";
+import { catchError, Observable, of, Subject } from "rxjs";
 import { HeaderComponent } from "../header/header.component";
 import { Room } from "./rooms";
 import { RoomsService } from "./services/rooms.service";
@@ -21,15 +21,23 @@ import { RoomsService } from "./services/rooms.service";
 export class RoomsComponent
   implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
 {
-  // 8: 28: 47
   hotelName = "Neo Hotel";
   numberOfRooms = 10;
 
-  rooms$: Observable<Room[]> = this.roomsService.getRooms$;
+  errorSubject$: Subject<string> = new Subject();
+  getError$ = this.errorSubject$.asObservable();
+
+  rooms$: Observable<Room[]> = this.roomsService.getRooms$.pipe(
+    catchError((err) => {
+      this.errorSubject$.next(`Error getting rooms!: ${err.message}`);
+
+      return of([]);
+    })
+  );
 
   roomList: Room[] = [];
 
-  hideRooms = true;
+  hideRooms = false;
 
   selectedRoom?: Room;
 

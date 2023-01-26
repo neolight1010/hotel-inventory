@@ -1,5 +1,7 @@
 <hia-header></hia-header>
 
+<div *ngIf="getError$ | async as error">{{ error }}</div>
+
 <div *ngIf="selectedRoom">Selected room: {{ selectedRoom | json }}</div>
 
 <div>
