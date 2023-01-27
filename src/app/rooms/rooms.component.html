@@ -17,6 +17,8 @@
 </div>
 
 <div *ngIf="!hideRooms">
+  <h3>Number of rooms: {{ roomsCount$ | async }}</h3>
+
   <div *ngIf="rooms$ | async as rooms">
     <hia-rooms-table
       [rooms]="rooms"

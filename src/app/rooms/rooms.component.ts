@@ -8,7 +8,7 @@ import {
   SkipSelf,
   ViewChild,
 } from "@angular/core";
-import { catchError, Observable, of, Subject } from "rxjs";
+import { catchError, map, Observable, of, Subject } from "rxjs";
 import { HeaderComponent } from "../header/header.component";
 import { Room } from "./rooms";
 import { RoomsService } from "./services/rooms.service";
@@ -33,6 +33,10 @@ export class RoomsComponent
 
       return of([]);
     })
+  );
+
+  roomsCount$: Observable<number> = this.roomsService.getRooms$.pipe(
+    map((rooms) => rooms.length)
   );
 
   roomList: Room[] = [];
