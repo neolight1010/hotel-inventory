@@ -2,7 +2,11 @@ import { Inject, Injectable } from "@angular/core";
 import { Room } from "../rooms";
 import { AppConfigService } from "../../app-config/app-config.service";
 import { AppConfig } from "../../app-config/app-config.interface";
-import { HttpClient, HttpEvent, HttpRequest } from "@angular/common/http";
+import {
+  HttpClient,
+  HttpEvent,
+  HttpRequest,
+} from "@angular/common/http";
 import { Observable, shareReplay } from "rxjs";
 
 @Injectable({
@@ -16,15 +20,11 @@ export class RoomsService {
     private http: HttpClient
   ) {
     console.log("API URL: ", this.appConfig.apiUrl);
-
-    // this.getRooms().subscribe((rooms) => (this.rooms = rooms));
   }
 
-  getRooms$ = this.http.get<Room[]>("/api/rooms").pipe(shareReplay(1));
-
-  getRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>("/api/rooms");
-  }
+  getRooms$ = this.http
+    .get<Room[]>("/api/rooms")
+    .pipe(shareReplay(1));
 
   /**
    * Add a new rooms and returns the updated list of rooms.
