@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EmployeeComponent } from "./employee/employee.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 import { RoomsComponent } from "./rooms/rooms.component";
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   },
   { path: "rooms", component: RoomsComponent },
   { path: "", redirectTo: "/rooms", pathMatch: "full" },
+  { path: "**", component: NotFoundComponent },
 ];
 
 @NgModule({
