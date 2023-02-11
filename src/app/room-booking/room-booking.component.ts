@@ -8,8 +8,8 @@ import { map, Observable } from "rxjs";
   styleUrls: ["./room-booking.component.scss"],
 })
 export class RoomBookingComponent implements OnInit {
-  roomId$: Observable<number> = this.router.params.pipe(
-    map((params) => params["id"])
+  roomId$: Observable<number> = this.router.paramMap.pipe(
+    map((params) => parseInt(params.get("id") || "0"))
   );
 
   constructor(private router: ActivatedRoute) {}
