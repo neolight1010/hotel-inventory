@@ -1,8 +1,21 @@
+{{roomsForm.valid | json}}
+
 <div *ngIf="success$ | async" class="alert alert-success">
   Success!
 </div>
 
-<form (ngSubmit)="addRoom()">
+<form #roomsForm="ngForm" (ngSubmit)="addRoom()">
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="text"
+      name="roomNumber"
+      placeholder="Room Number"
+      [(ngModel)]="room.roomNumber"
+      required
+    />
+  </div>
+
   <div class="form-group">
     <input
       class="form-control"
@@ -10,6 +23,7 @@
       name="roomType"
       placeholder="Room Type"
       [(ngModel)]="room.roomType"
+      required
     />
   </div>
   <div class="form-group">
@@ -28,6 +42,7 @@
       name="price"
       placeholder="Price per night"
       [(ngModel)]="room.price"
+      required
     />
   </div>
   <div class="form-group">
@@ -68,6 +83,6 @@
   </div>
 
   <div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-primary" [disabled]="roomsForm.invalid" type="submit">Submit</button>
   </div>
 </form>
