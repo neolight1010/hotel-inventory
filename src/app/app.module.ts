@@ -23,6 +23,7 @@ import { MatListModule } from '@angular/material/list';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoomBookingComponent } from './room-booking/room-booking.component';
 import { RoomAddComponent } from './room-add/room-add.component';
+import {FormsModule} from "@angular/forms";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -45,6 +46,7 @@ function initFactory(initService: InitService) {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     LayoutModule,
     MatToolbarModule,

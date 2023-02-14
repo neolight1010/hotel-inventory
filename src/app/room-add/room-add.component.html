@@ -1,1 +1,73 @@
-<p>room-add works!</p>
+<div *ngIf="success$ | async" class="alert alert-success">
+  Success!
+</div>
+
+<form (ngSubmit)="addRoom()">
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="text"
+      name="roomType"
+      placeholder="Room Type"
+      [(ngModel)]="room.roomType"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="text"
+      name="amenities"
+      placeholder="Amenities"
+      [(ngModel)]="room.amenities"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="number"
+      name="price"
+      placeholder="Price per night"
+      [(ngModel)]="room.price"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="text"
+      name="photo"
+      placeholder="Link to photo"
+      [(ngModel)]="room.photo"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="datetime"
+      name="checkInTime"
+      placeholder="Check-in time"
+      [(ngModel)]="room.checkInTime"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="datetime"
+      name="checkOutTime"
+      placeholder="Check-out time"
+      [(ngModel)]="room.checkOutTime"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      class="form-control"
+      type="number"
+      name="rating"
+      placeholder="Rating"
+      [(ngModel)]="room.rating"
+    />
+  </div>
+
+  <div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
