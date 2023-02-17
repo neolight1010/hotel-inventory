@@ -40,6 +40,10 @@
       {{roomAmenities.errors?.["minlength"]["requiredLength"]}} characters
     </div>
 
+    <div class="alert alert-danger" *ngIf="roomAmenities.dirty && roomAmenities.errors?.['required']">
+      This field is required.
+    </div>
+
     <div>{{ roomAmenities.errors | json }}</div>
   </div>
   <div class="form-group">
