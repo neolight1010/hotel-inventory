@@ -24,6 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RoomBookingComponent } from './room-booking/room-booking.component';
 import { RoomAddComponent } from './room-add/room-add.component';
 import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -41,6 +42,7 @@ function initFactory(initService: InitService) {
     NotFoundComponent,
     RoomBookingComponent,
     RoomAddComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
