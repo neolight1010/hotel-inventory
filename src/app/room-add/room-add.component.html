@@ -1,6 +1,6 @@
 <div *ngIf="success$ | async" class="alert alert-success">Success!</div>
 
-<form #roomsForm="ngForm" (ngSubmit)="addRoom()">
+<form #roomsForm="ngForm" (ngSubmit)="addRoom(roomsForm)">
   <div class="form-group">
     <input
       class="form-control"
