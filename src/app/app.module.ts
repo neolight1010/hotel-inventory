@@ -4,29 +4,25 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { RoomsComponent } from "./rooms/rooms.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RoomsTableComponent } from "./rooms/rooms-table/rooms-table.component";
-import { HeaderComponent } from "./header/header.component";
 import { ContainerComponent } from "./container/container.component";
 import { EmployeeComponent } from "./employee/employee.component";
 import { APP_CONFIG, AppConfigService } from "./app-config/app-config.service";
-import {RequestInterceptor} from "./request.interceptor";
-import {InitService} from "./init.service";
-import { AppNavComponent } from './app-nav/app-nav.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { RoomBookingComponent } from './room-booking/room-booking.component';
-import { RoomAddComponent } from './room-add/room-add.component';
-import {FormsModule} from "@angular/forms";
-import { LoginComponent } from './login/login.component';
-import { HoverDirective } from './hover.directive';
-import { EmailValidatorDirective } from './email-validator.directive';
+import { RequestInterceptor } from "./request.interceptor";
+import { InitService } from "./init.service";
+import { AppNavComponent } from "./app-nav/app-nav.component";
+import { LayoutModule } from "@angular/cdk/layout";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatIconModule } from "@angular/material/icon";
+import { MatListModule } from "@angular/material/list";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { FormsModule } from "@angular/forms";
+import { LoginComponent } from "./login/login.component";
+import { HoverDirective } from "./hover.directive";
+import { EmailValidatorDirective } from "./email-validator.directive";
+import {RoomsModule} from "./rooms.module";
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -35,21 +31,17 @@ function initFactory(initService: InitService) {
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent,
-    RoomsTableComponent,
-    HeaderComponent,
     ContainerComponent,
     EmployeeComponent,
     AppNavComponent,
     NotFoundComponent,
-    RoomBookingComponent,
-    RoomAddComponent,
     LoginComponent,
     HoverDirective,
     EmailValidatorDirective,
   ],
   imports: [
     BrowserModule,
+    RoomsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -76,7 +68,7 @@ function initFactory(initService: InitService) {
       useFactory: initFactory,
       deps: [InitService],
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })
