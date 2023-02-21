@@ -11,6 +11,10 @@ const routes: Routes = [
   },
 
   { path: "login", component: LoginComponent },
+  {
+    path: "rooms",
+    loadChildren: () => import("./rooms.module").then((m) => m.RoomsModule),
+  },
 
   { path: "", redirectTo: "/rooms", pathMatch: "full" },
   { path: "**", component: NotFoundComponent },
