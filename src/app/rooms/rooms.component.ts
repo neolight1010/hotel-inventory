@@ -98,23 +98,6 @@ export class RoomsComponent
     console.log("Some change has happened!");
   }
 
-  addRoom(): void {
-    const room: Room = {
-      amenities: "My Amenities",
-      checkInTime: new Date(),
-      checkOutTime: new Date(),
-      photo: "No photo",
-      price: 50,
-      rating: 5,
-      roomNumber: "6",
-      roomType: "Simple room room",
-    };
-
-    this.roomsService.addRoom(room).subscribe((allRooms) => {
-      this.roomList = allRooms;
-    });
-  }
-
   updateRoom(): void {
     this.roomsService
       .updateRoom({

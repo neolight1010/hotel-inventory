@@ -5,7 +5,7 @@
 <div *ngIf="selectedRoom">Selected room: {{ selectedRoom | json }}</div>
 
 <div>
-  <button (click)="addRoom()">Add Room</button>
+  <button routerLink="/rooms/add">Add Room</button>
 </div>
 
 <div>
@@ -30,3 +30,5 @@
 <button (click)="toggle()">Toggle</button>
 
 <div>Photo bytes downloaded: {{ photoBytesDownloaded }}</div>
+
+<router-outlet></router-outlet>
