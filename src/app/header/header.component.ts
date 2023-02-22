@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ConfigService } from "../services/config.service";
 
 @Component({
   selector: "hia-header",
@@ -8,7 +9,9 @@ import { Component, OnInit } from "@angular/core";
 export class HeaderComponent implements OnInit {
   title: string = "";
 
-  constructor() {}
+  constructor(private configService: ConfigService) {
+    this.configService;
+  }
 
   ngOnInit(): void {}
 }

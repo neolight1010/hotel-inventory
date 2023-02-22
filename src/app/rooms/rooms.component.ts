@@ -10,6 +10,7 @@ import {
 } from "@angular/core";
 import { catchError, map, Observable, of, Subject } from "rxjs";
 import { HeaderComponent } from "../header/header.component";
+import { ConfigService } from "../services/config.service";
 import { Room } from "./rooms";
 import { RoomsService } from "./services/rooms.service";
 
@@ -57,7 +58,12 @@ export class RoomsComponent
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
 
-  constructor(@SkipSelf() private roomsService: RoomsService) {}
+  constructor(
+    @SkipSelf() private roomsService: RoomsService,
+    private configService: ConfigService
+  ) {
+    this.configService;
+  }
 
   ngOnInit(): void {
     this.roomsService.getRooms$.subscribe((rooms) => {
