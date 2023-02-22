@@ -17,6 +17,7 @@ const routes: Routes = [
   },
 
   { path: "", redirectTo: "/rooms", pathMatch: "full" },
+  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
   { path: "**", component: NotFoundComponent },
 ];
 
