@@ -1,4 +1,6 @@
 import { Component, Inject, OnInit, Optional } from "@angular/core";
+import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { filter } from "rxjs";
 import { LocalStorageToken } from "../local-storage.token";
 import { InitService } from "./init.service";
 import { LoggerService } from "./logger.service";
@@ -16,7 +18,8 @@ export class AppComponent implements OnInit {
     private initService: InitService,
     @Inject(LocalStorageToken) private localStorage: Storage,
     private configService: ConfigService,
-    @Optional() private loggerService?: LoggerService,
+    private router: Router,
+    @Optional() private loggerService?: LoggerService
   ) {
     this.loggerService?.log("Hello World");
     this.configService;
@@ -25,6 +28,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe((event) => {
+        console.log("Navigation Started", event);
+      });
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        console.log("Navigation Completed", event);
+      });
+
     this.localStorage.setItem("hotelName", "Hilton Hotel");
   }
 }
