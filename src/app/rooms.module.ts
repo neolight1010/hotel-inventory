@@ -8,6 +8,7 @@ import { RoomsTableComponent } from "./rooms/rooms-table/rooms-table.component";
 import { RoomsComponent } from "./rooms/rooms.component";
 import { FormsModule } from "@angular/forms";
 import { HeaderModule } from "./header.module";
+import { RouteConfigToken } from "./services/routeConfig.service";
 
 @NgModule({
   declarations: [
@@ -17,5 +18,11 @@ import { HeaderModule } from "./header.module";
     RoomAddComponent,
   ],
   imports: [CommonModule, FormsModule, HeaderModule, RoomsRoutingModule],
+  providers: [
+    {
+      provide: RouteConfigToken,
+      useValue: { title: "Room" },
+    },
+  ],
 })
 export class RoomsModule {}
