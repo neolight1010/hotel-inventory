@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { LoginService } from "./login.service";
 
 @Component({
-  selector: 'hia-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "hia-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   email: string = "";
   password: string = "";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(): void {
-    if (this.email === "admin" && this.password === "admin") {
+    if (this.loginService.login(this.email, this.password)) {
       this.router.navigateByUrl("/rooms/add");
     } else {
       alert(`Invalid Credentials ${this.email} ${this.password}`);
