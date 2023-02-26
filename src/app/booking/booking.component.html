@@ -1,1 +1,63 @@
-<p>booking works!</p>
+<form [formGroup]="bookingForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Room ID</mat-label>
+
+    <input type="text" matInput placeholder="id" formControlName="roomId" />
+
+    <mat-error
+      *ngIf="
+        bookingForm.hasError('roomId') && !bookingForm.hasError('required')
+      "
+      >Please enter a valid Room ID</mat-error
+    >
+
+    <mat-error *ngIf="bookingForm.hasError('required')"></mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="email@example.com" formControlName="guestEmail" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="date" matInput placeholder="Check-in date" formControlName="checkInDate" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="date" matInput placeholder="Check-out date" formControlName="checkOutDate" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Status" formControlName="bookingStatus" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="number" matInput placeholder="0" formControlName="bookingAmount" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="date" matInput placeholder="Booking date" formControlName="bookingDate" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Number" formControlName="mobileNumber" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Name" formControlName="guestName" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Address" formControlName="guestAddress" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="City" formControlName="guestCity" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="State" formControlName="guestState" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Country" formControlName="guestCountry" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Zip code" formControlName="guestZipCode" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="number" matInput placeholder="Guest Count" formControlName="guestCount" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <input type="text" matInput placeholder="Guest list" formControlName="guestList" />
+  </mat-form-field>
+</form>
