@@ -6,6 +6,7 @@ import { BookingComponent } from "./booking.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [BookingComponent],
@@ -15,6 +16,7 @@ import { MatInputModule } from "@angular/material/input";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
   ],
 })
 export class BookingModule {}

@@ -1,4 +1,4 @@
-<form [formGroup]="bookingForm">
+<form [formGroup]="bookingForm" (ngSubmit)="addBooking()">
   <mat-form-field appearance="fill">
     <mat-label>Room ID</mat-label>
 
@@ -60,4 +60,6 @@
   <mat-form-field appearance="fill">
     <input type="text" matInput placeholder="Guest list" formControlName="guestList" />
   </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>

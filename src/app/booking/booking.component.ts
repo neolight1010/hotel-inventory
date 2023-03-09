@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "hia-booking",
@@ -31,7 +31,14 @@ export class BookingComponent implements OnInit {
       guestList: [],
     };
 
-    this.bookingForm = this.formBuilder.group(initialBooking);
+    this.bookingForm = this.formBuilder.group({
+      ...initialBooking,
+      roomId: new FormControl({ value: "2", disabled: true }),
+    });
+  }
+
+  addBooking(): void {
+    console.log(this.bookingForm.value);
   }
 }
 
